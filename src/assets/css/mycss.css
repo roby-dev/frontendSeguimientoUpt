@@ -1,0 +1,18 @@
+.topbar{
+    background-color:#0A245F !important ;
+}
+.topbar .top-navbar {
+    min-height: 75px !important;
+}
+
+.right-sidebar .rpanel-title {
+    padding: 26.5px 20px !important;
+}
+
+.right-sidebar .rpanel-title {
+    background-color:#0A245F !important ;
+}
+
+.topbar .navbar-header {
+    min-height: 75px;
+}
