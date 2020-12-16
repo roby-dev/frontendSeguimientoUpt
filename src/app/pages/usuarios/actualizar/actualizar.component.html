@@ -1,0 +1,175 @@
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Cargando</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Por favor espere</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="row animated fadeIn fast" *ngIf="!cargando">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Usuario</h4>
+        <h6 class="card-subtitle">Actualizar información</h6>
+        <form
+          class="form-horizontal p-t-20"
+          [formGroup]="usuarioForm"
+          (submit)="actualizarUsuario()"
+        >
+
+          <div class="form-group row">
+            <label for="nombres" class="col-sm-3 control-label"
+              >Nombres*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-user"></i></div>
+                <input
+                  formControlName="nombres"
+                  type="text"
+                  class="form-control"
+                  id="nombres"
+                  placeholder="Nombres del usuario"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="apellidos" class="col-sm-3 control-label"
+              >Apellidos*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-user"></i></div>
+                <input
+                  formControlName="apellidos"
+                  type="text"
+                  class="form-control"
+                  id="apellidos"
+                  placeholder="Apellidos del usuario"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 control-label"
+              >Email*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-email"></i></div>
+                <input
+                  formControlName="email"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Email del usuario"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="role" class="col-sm-3 control-label"
+              >Role*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-stamp"></i></div>
+                <select class="form-control" formControlName="role">
+                  <option value="">Seleccione Role</option>
+                  <option value="DIRECTOR_ROLE">Director</option>
+                  <option value="SUPERVISOR_ROLE">Supervisor</option>
+                  <option value="DOCENTE_ROLE">Docente</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row m-b-0">
+            <div class="offset-sm-3 mx-auto">
+              <button
+                [disabled]="usuarioForm.invalid"
+                type="submit"
+                class="btn btn-info waves-effect waves-light"
+              >
+                <i class="fa fa-save"></i>
+                &nbsp; Actualizar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-8">
+            <h3 class="card-title">Secciones</h3>
+            <br>
+          </div>
+        <div class="table-responsive p-3 ">
+          <table class="table table-bordered" *ngIf='seccion'>
+            <thead>
+              <tr>
+                <th>Sección</th>
+                <th>Curso</th>
+                <th class="text-nowrap" class="w100">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let seccion of secciones">
+                <td>{{ seccion.nombre }}</td>
+                <td>{{ seccion.curso.nombre }}</td>
+                <td class="text-nowrap text-center">
+                  <a
+                    [routerLink]="['/dashboard', 'seccion', seccion._id]"
+                    data-toggle="tooltip"
+                    data-original-title="Editar"
+                  >
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    class="cursor"
+                    data-toggle="tooltip"
+                    data-original-title="Borrar"
+                    (click)="borrarSeccion(seccion)"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info" *ngIf="!seccion">
+            No hay secciones registradas para este usuario
+          </div>
+          <div class="form-group row m-b-0">
+            <div class="offset-sm-3 mx-auto">
+              <a class="btn btn-info" routerLink="/dashboard/seccion/nuevo">
+
+                <i class="fa fa-save"></i>
+                &nbsp; Añadir sección
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+

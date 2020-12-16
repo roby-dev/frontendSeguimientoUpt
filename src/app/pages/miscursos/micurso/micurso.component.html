@@ -1,0 +1,39 @@
+
+<div class="row">
+  <div class="col-sm-8 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title" *ngIf="cursoSeleccionado">{{cursoSeleccionado.nombre}}</h3>
+        <br>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Semanas</th>
+                <th>Accion</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]">
+                <td>Semana {{number}}</td>
+                <td class="w500">
+                  <button class="btn btn-default">Ver Avance</button>
+                  &nbsp;
+                  <button class="btn btn-default">Registrar Avance</button>
+                  &nbsp;
+                  <button class="btn btn-info">Enviar Avance</button>
+                  </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="btn btn-secondary">Anterior</button>
+        &nbsp;
+        <button class="btn btn-secondary">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

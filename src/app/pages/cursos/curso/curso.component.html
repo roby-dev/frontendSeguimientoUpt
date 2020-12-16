@@ -1,0 +1,200 @@
+<div class="row">
+  <div class="col-md-6" [ngClass]="{'mx-auto col-md-10':!cursoSeleccionado}">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Curso</h4>
+        <h6 class="card-subtitle">Actualizar información</h6>
+        <form
+          class="form-horizontal p-t-20"
+          [formGroup]="cursoForm"
+          (submit)="guardarCurso()"
+        >
+
+        <div class="form-group row">
+          <label for="planEstudios" class="col-sm-3 control-label"
+            >Plan de Estudios*</label
+          >
+          <div class="col-sm-9">
+            <div class="input-group">
+              <div class="input-group-addon"><i class="ti-notepad"></i></div>
+              <select id="planEstudios" class="form-control" formControlName="planEstudios">
+                <option value="">Seleccione Plan</option>
+                <option
+                  *ngFor="let plan of planes"
+                  [value]="plan._id"
+                >
+                  {{ plan.codigo }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+          <div class="form-group row">
+            <label for="codigo" class="col-sm-3 control-label"
+              >Codigo*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-key"></i></div>
+                <input
+                  formControlName="codigo"
+                  type="text"
+                  class="form-control"
+                  id="codigo"
+                  placeholder="Codigo del curso"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="nombre" class="col-sm-3 control-label"
+              >Nombre*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-info"></i></div>
+                <input
+                  formControlName="nombre"
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  placeholder="Nombre del curso"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="facultad" class="col-sm-3 control-label"
+              >Facultad*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-home"></i></div>
+                <input
+                  formControlName="facultad"
+                  type="text"
+                  class="form-control"
+                  id="facultad"
+                  placeholder="Facultad del curso"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="escuela" class="col-sm-3 control-label"
+              >Escuela*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-home"></i></div>
+                <input
+                  formControlName="escuela"
+                  type="text"
+                  class="form-control"
+                  id="escuela"
+                  placeholder="Escuela del curso"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="exampleInputEmail3" class="col-sm-3 control-label"
+              >Ciclo*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-email"></i></div>
+                <select class="form-control" formControlName="ciclo">
+                  <option value="">Seleccione Ciclo</option>
+                  <option
+                    *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]"
+                    [value] = number
+                  >
+                    {{ number }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row m-b-0">
+            <div class="offset-sm-3 mx-auto">
+              <button
+                [disabled]="cursoForm.invalid"
+                type="submit"
+                class="btn btn-info waves-effect waves-light"
+              >
+                <i class="fa fa-save"></i>
+                &nbsp; Guardar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" *ngIf="(cursoSeleccionado)">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-8">
+            <h3 class="card-title">Secciones</h3>
+            <br>
+          </div>
+        <div class="table-responsive p-3 ">
+          <table class="table table-bordered" *ngIf='seccion'>
+            <thead>
+              <tr>
+                <th>Sección</th>
+                <th>Docente</th>
+                <th class="text-nowrap" class="w100">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let seccion of secciones">
+                <td>{{ seccion.nombre }}</td>
+                <td>{{ seccion.usuario.nombres + ' ' +seccion.usuario.apellidos }}</td>
+                <td class="text-nowrap text-center">
+                  <a
+                    [routerLink]="['/dashboard', 'seccion', seccion._id]"
+                    data-toggle="tooltip"
+                    data-original-title="Editar"
+                  >
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    class="cursor"
+                    data-toggle="tooltip"
+                    data-original-title="Borrar"
+                    (click)="borrarSeccion(seccion)"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="alert alert-info" *ngIf="!seccion">
+            No hay secciones registradas para este usuario
+          </div>
+          <div class="form-group row m-b-0">
+            <div class="offset-sm-3 mx-auto">
+              <a class="btn btn-info" routerLink="/dashboard/seccion/nuevo">
+
+                <i class="fa fa-save"></i>
+                &nbsp; Añadir sección
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

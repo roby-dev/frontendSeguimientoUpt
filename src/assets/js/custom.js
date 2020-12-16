@@ -6,6 +6,10 @@ File: js
 */
 
 const customSidebar = () => {
+
+};
+
+const customInitFunctions = () => {
   $(function () {
     "use strict";
     $(function () {
@@ -76,9 +80,6 @@ const customSidebar = () => {
       $(".right-sidebar").toggleClass("shw-rside");
     });
   });
-};
-
-const customInitFunctions = () => {
   // ==============================================================
   // This is for the floating labels
   // ==============================================================
@@ -155,4 +156,4 @@ const customInitFunctions = () => {
 };
 
 customInitFunctions();
-customSidebar();
+//customSidebar();

@@ -1,11 +1,10 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 
-$(function() {
 
-    "use strict";
+const chatInitFunctions = () =>{
 
-    $('.chat-left-inner > .chatonline, .chat-rbox').perfectScrollbar();
+  $('.chat-left-inner > .chatonline, .chat-rbox').perfectScrollbar();
 
     var cht = function() {
         var topOffset = 450;
@@ -30,4 +29,6 @@ $(function() {
         $(".chat-left-aside").toggleClass("open-pnl");
         $(".open-panel i").toggleClass("ti-angle-left");
     });
-});
+}
+
+chatInitFunctions();

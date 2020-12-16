@@ -1,0 +1,78 @@
+<div class="card col-sm-9 mx-auto">
+  <div class="card-body">
+    <div class="text-center mt-3 mb-3">
+      <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" class="img-avatar" for="image" />
+      <img *ngIf="imgTemp" [src]="imgTemp" class="img-avatar" for="image" />
+    </div>
+
+    <input type="file" (change)="cambiarImagen($event.target.files[0])" class="mx-auto" id="image" />
+    <br />
+    <br />
+    <div class="col-sm-6 mx-auto  mb-3">
+      <button
+      class="btn btn-default btn-block waves-effect waves-light mx-auto"
+      [disabled]="!imagenSubir"
+      (click)="subirImagen()"
+    >
+      <i class="fa fa-save"></i>&nbsp; Cambiar imagen
+    </button>
+    </div>
+    <form class="form-horizontal form-material" [formGroup]="perfilForm" (submit)="actualizarPerfil()">
+
+
+
+            <br>
+        <hr>
+        <br>
+
+        <div class="form-group pt-2">
+            <label for="nombres" class="col-md-12">Nombres</label>
+            <div class="col-md-12">
+                <input type="text" placeholder="Ingrese Nombres" class="form-control form-control-line" id="nombres" formControlName="nombres">
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="apellidos" class="col-md-12">Apellidos</label>
+          <div class="col-md-12">
+            <input type="text" placeholder="Ingrese Apellidos" class="form-control form-control-line" id="apellidos" formControlName="apellidos">
+          </div>
+      </div>
+        <div class="form-group">
+            <label for="email" class="col-md-12">Email</label>
+            <div class="col-md-12">
+              <input type="email" placeholder="Ingrese Email" class="form-control form-control-line" id="email" formControlName="email">
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="tipo" class="col-md-12">Tipo</label>
+          <div class="col-md-12">
+            <input type="text" disabled class="form-control form-control-line" id="tipo" formControlName="tipo">
+            <input type="hidden" class="form-control form-control-line" id="role" formControlName="role">
+          </div>
+      </div>
+        <div class="form-group">
+            <label class="col-md-12">Contraseña</label>
+            <div class="col-md-12">
+                <br>
+                <div class="btn btn-info waves-effect waves-light m-r-10" (click)="abrirModal()">Cambiar Contraseña</div>
+              <!-- <input type="password" value="password" class="form-control  form-control-line"> -->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-6 mx-auto">
+              <button
+              type="submit"
+              class="btn btn-default mx-auto d-block"
+              [disabled]="perfilForm.invalid"
+            >
+            <i class="fa fa-save"></i>&nbsp; Actualizar Perfil
+           </button>
+            </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+<app-modal-password></app-modal-password>
+

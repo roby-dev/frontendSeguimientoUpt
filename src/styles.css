@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+
+.fast {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+#themecolors .selector,
+.cursor {
+  cursor: pointer;
+}
+
+.img-avatar {
+  width: 250px;
+  height: auto;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.w40 {
+  width: 40px;
+}
+
+.w140 {
+  width: 140px;
+}
+
+.w50 {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.w200 {
+  width: 200px;
+}
+
+.w350 {
+  width: 350px;
+}
+
+.w500 {
+  width: 500px;
+}
+
+.w150 {
+  width: 150px;
+}
+
+
+.w50 img {
+  width: 100%;
+}
+
+.fondo-modal-imagen {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+.oculto {
+  display: none;
+}
+
+.titulos-ciclo{
+  font-size: 1.5em !important;
+}
+
+.label-info{
+  background-color: #a8a8a8 !important;
+}
+
+
+.modal-dialog{
+  overflow-y: initial !important;
+}
+
+.modal-body{
+  min-height: auto;
+  max-height: 550px;
+  overflow-y: auto;
+}
+
+.seleccion-modo-nocturno:hover{
+  color:#ffffff !important;
+}
+
+.seleccion-modo-light:hover{
+  color:#0A245F !important;
+}
+

@@ -12,44 +12,80 @@
             class="has-arrow waves-effect waves-dark"
             href="#"
             aria-expanded="false"
-        ><img src="assets/images/users/4.jpg" alt="user" /><span
+            ><img [src]="usuario.imagenUrl" alt="user" /><span
               class="hide-menu"
             >
-             Roby Zuñiga Silva
+              {{ usuario.nombres +' '+ usuario.apellidos | slice: 0:17
+              }}{{(usuario.nombres +' '+ usuario.apellidos).length> 17 ? "..." : "" }}
             </span></a
           >
           <ul aria-expanded="false" class="collapse">
             <li>
-              <a routerLinkActive="active" routerLink="./perfil">My Profile </a>
+              <a routerLinkActive="active" routerLink="./perfil">Mi Perfil</a>
             </li>
-            <li><a href="javascript:void()">My Balance</a></li>
-            <li><a href="javascript:void()">Inbox</a></li>
-            <li><a routerLink="account-settings">Account Setting</a></li>
-            <li><a routerLink="/login">Logout</a></li>
+            <li>
+              <a *ngIf='modoNocturno'  class="cursor seleccion-modo-light" (click)="changeTheme('blue-dark')">Modo Nocturno</a>
+              <a *ngIf='!modoNocturno'  class="cursor seleccion-modo-nocturno" (click)="changeTheme('blue')">Modo Día</a>
+            </li>
+            <li><a routerLink="/login">Salir</a></li>
           </ul>
         </li>
         <li class="nav-devider"></li>
-        <li class="nav-small-cap">PERSONAL</li>
-        <li>
+        <li *ngFor="let item of sidebarService.menu">
           <a
             class="has-arrow waves-effect waves-dark"
             href="#"
             aria-expanded="false"
+            *ngIf="item.titulo!='Mis Cursos'"
           >
-            <i class="mdi mdi-gauge"></i>
+            <i [class]="item.icono"></i>
             <span class="hide-menu"
-              >Principal
-              <span class="label label-rouded label-themecolor pull-right">
-              1
+              >{{ item.titulo }}
+              <span class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}
               </span></span
-            ></a>
-          <ul aria-expanded="false" class="collapse">
+            ></a
+          >
+          <ul aria-expanded="false" class="collapse" *ngIf="item.titulo !='Mis Cursos'">
+            <li *ngFor="let subMenuItem of item.submenu">
+              <a
+                [routerLink]="subMenuItem.url"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ subMenuItem.titulo }}
+
+                <span *ngIf="subMenuItem.titulo=='Cursos'"  class="label label-rouded label-themecolor pull-right">{{subMenuItem.titulo}} </span>
+              </a>
+            </li>
+          </ul>
+
+          <a
+            class="has-arrow waves-effect waves-dark"
+            aria-expanded="false"
+            *ngIf="item.titulo=='Mis Cursos'"
+          >
+            <i [class]="item.icono"></i>
+            <span class="hide-menu"
+              >{{ item.titulo }}
+              <span class="label label-rouded label-themecolor pull-right" *ngIf="cantidad">{{secciones.length}}</span>
+                <span class="label label-rouded label-themecolor pull-right" *ngIf="!cantidad">0</span>
+            </span>
+            </a>
+          <ul aria-expanded="false" class="collapse" *ngIf="item.titulo =='Mis Cursos'">
+            <li *ngFor="let seccion of secciones">
+              <a
+                routerLink="micurso/{{seccion._id}}"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ seccion.nombre }}
+              </a>
+            </li>
             <li>
               <a
-                href="./"
-              >
-              Home
-              </a>
+              routerLink="miscursos"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Ver todo
+            </a>
             </li>
           </ul>
         </li>
@@ -60,5 +96,7 @@
   <!-- End Sidebar scroll-->
 </aside>
 <!-- ============================================================== -->
-<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- End Left Sidebar - style you can find in sidebar.scss   -->
+
 <!-- ============================================================== -->
+

@@ -1,0 +1,96 @@
+<div
+  class="fondo-modal-imagen animated fadeIn fast"
+  [class.oculto]="modalTablasService.ocultarModal"
+>
+  <div
+    id="responsive-modal"
+    class="modal fade show"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    style="display: block; padding-right: 17px"
+  >
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered mx-auto" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" *ngIf="modalTablasService.tipo=='usuarios'">Lista de Docentes</h3>
+          <h3 class="modal-title" *ngIf="modalTablasService.tipo=='cursos'">Lista de Cursos</h3>
+
+
+
+          <button
+            type="button"
+            class="close cursor"
+            data-dismiss="modal"
+            aria-hidden="true"
+            (click)="cerrarModal()"
+          >
+            X
+          </button>
+
+
+
+
+        </div>
+        <div class="row animated fadeIn fast">
+          <div class="col-sm-12">
+            <div class="card mb-0">
+              <div class="card-body">
+                <input
+                  *ngIf="modalTablasService.tipo=='usuarios'"
+                  type="text"
+                  class="form-control m-0"
+                  placeholder="Ingrese nombres o apellidos"
+                  #txtTermino
+                  id="txtTermino"
+                  (keyup)="buscar(txtTermino.value,'usuarios')"
+                />
+                <input
+                  *ngIf="modalTablasService.tipo=='cursos'"
+                  id="txtTermino"
+                  type="text"
+                  class="form-control m-0"
+                  placeholder="Ingrese código o nombre"
+                  #txtTermino
+                  (keyup)="buscar(txtTermino.value,'cursos')"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-hover" *ngIf="modalTablasService.tipo=='cursos'">
+            <thead>
+              <tr>
+                <th class="w100">Codigo</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of modalTablasService.cursos" class="cursor" (click)="elegirCurso(curso)">
+                <td class="w100">{{ curso.codigo }}</td>
+                <td>{{ curso.nombre }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered table-hover" *ngIf="modalTablasService.tipo=='usuarios'">
+            <thead>
+              <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let usuario of modalTablasService.usuarios" class="cursor" (click)="elergirUsuario(usuario)">
+                <td class="w100">{{ usuario.nombres }}</td>
+                <td class="w100">{{ usuario.apellidos }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

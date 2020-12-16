@@ -1,0 +1,79 @@
+<div class="row animated fadeIn fast" *ngIf="cargando">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Cargando</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Por favor espere</p>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="!cargando">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-8">
+            <h3 class="card-title">Lista de Cursos</h3>
+            <br>
+            <h6 class="card-subtitle">
+              Cursos <code>.registrados</code>
+            </h6>
+          </div>
+          <div class="col">
+            <div class="text-right">
+              <a class="btn btn-info" routerLink="/dashboard/curso/nuevo">
+                <i class="fa fa-hospital-o"></i>&nbsp; Crear Curso
+              </a>
+            </div>
+          </div>
+        <div class="table-responsive p-3 " *ngFor="let ciclo of ciclos; let i = index">
+          <div class="d-block label label-info">
+            <h5 class="p-2 label card-title d-block mx-auto mb-0 text-center titulos-ciclo">Ciclo {{i+1}}</h5>
+          </div>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="w100">Semestre</th>
+                <th class="w100">Código</th>
+                <th>Nombre</th>
+                <th>Escuela</th>
+                <th>Facultad</th>
+                <th>Estado</th>
+                <th class="text-nowrap" class="w100">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of ciclo">
+                <td class="w100">{{ curso.planEstudios.codigo }}</td>
+                <td class="w100">{{ curso.codigo }}</td>
+                <td>{{ curso.nombre }}</td>
+                <td class="w350">{{ curso.escuela }}</td>
+                <td class="w200">{{ curso.facultad }}</td>
+                <td class="w150">{{ curso.estado }}</td>
+                <td class="text-nowrap text-center">
+                  <a
+                    [routerLink]="['/dashboard', 'curso', curso._id]"
+                    data-toggle="tooltip"
+                    data-original-title="Editar"
+                  >
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    class="cursor"
+                    data-toggle="tooltip"
+                    data-original-title="Borrar"
+                    (click)="borrarCurso(curso)"
+                  >
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

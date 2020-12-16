@@ -1,0 +1,96 @@
+<div class="row">
+  <div class="col-md-10 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Sección</h4>
+        <h6 class="card-subtitle">Actualizar información</h6>
+        <form
+          class="form-horizontal p-t-20"
+          [formGroup]="seccionForm"
+          (submit)="guardarSeccion()"
+        >
+
+          <div class="form-group row">
+            <label for="nombre" class="col-sm-2 control-label"
+              >Nombre de Sección*</label
+            >
+            <div class="col-sm-7">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-info"></i></div>
+                <input
+                  formControlName="nombre"
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  placeholder="Nombre de la sección"
+                />
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="btn btn-info btn-block" (click)="abrirModal('cursos')">Silabus</div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="usuario" class="col-sm-2 control-label"
+              >Docente*</label
+            >
+            <div class="col-sm-7">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-user"></i></div>
+                <input
+                  formControlName="nombreusuario"
+                  type="text"
+                  class="form-control"
+                  id="usuario"
+                  placeholder="Seleccione docente"
+                  disabled
+                />
+                <input type="hidden" formControlName="usuario"/>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="btn btn-info btn-block" (click)="abrirModal('usuarios')">Docentes</div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="curso" class="col-sm-2 control-label"
+              >Curso*</label
+            >
+            <div class="col-sm-7">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-clipboard"></i></div>
+                <input
+                  formControlName="nombrecurso"
+                  type="text"
+                  class="form-control"
+                  id="curso"
+                  placeholder="Seleccione curso"
+                  disabled
+                />
+                <input type="hidden" formControlName="curso"/>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="btn btn-info btn-block" (click)="abrirModal('cursos')">Cursos</div>
+            </div>
+          </div>
+
+
+          <div class="form-group row m-b-0">
+            <div class="offset-sm-3 mx-auto">
+              <button
+                [disabled]="seccionForm.invalid"
+                type="submit"
+                class="btn btn-info waves-effect waves-light"
+              >
+                <i class="fa fa-save"></i>
+                &nbsp; Guardar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
