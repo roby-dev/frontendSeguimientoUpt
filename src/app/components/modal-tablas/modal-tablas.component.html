@@ -15,8 +15,7 @@
         <div class="modal-header">
           <h3 class="modal-title" *ngIf="modalTablasService.tipo=='usuarios'">Lista de Docentes</h3>
           <h3 class="modal-title" *ngIf="modalTablasService.tipo=='cursos'">Lista de Cursos</h3>
-
-
+          <h3 class="modal-title" *ngIf="modalTablasService.tipo=='secciones'">Lista de Secciones</h3>
 
           <button
             type="button"
@@ -54,6 +53,15 @@
                   #txtTermino
                   (keyup)="buscar(txtTermino.value,'cursos')"
                 />
+                <input
+                *ngIf="modalTablasService.tipo=='secciones'"
+                id="txtTermino"
+                type="text"
+                class="form-control m-0"
+                placeholder="Ingrese seccion"
+                #txtTermino
+                (keyup)="buscar(txtTermino.value,'secciones')"
+              />
               </div>
             </div>
           </div>
@@ -85,6 +93,19 @@
               <tr *ngFor="let usuario of modalTablasService.usuarios" class="cursor" (click)="elergirUsuario(usuario)">
                 <td class="w100">{{ usuario.nombres }}</td>
                 <td class="w100">{{ usuario.apellidos }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-bordered table-hover" *ngIf="modalTablasService.tipo=='secciones'">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let seccion of modalTablasService.secciones" class="cursor" (click)="elegirSeccion(seccion)">
+                <td class="w100">{{ seccion.nombre }}</td>
               </tr>
             </tbody>
           </table>

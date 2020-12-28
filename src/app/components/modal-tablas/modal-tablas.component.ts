@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Curso } from 'src/app/models/curso.model';
+import { Seccion } from 'src/app/models/seccion.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { CursosService } from 'src/app/services/cursos.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -26,7 +27,7 @@ export class ModalTablasComponent implements OnInit {
 
  }
 
- buscar(termino :string, tipo:'usuarios'| 'cursos'){
+ buscar(termino :string, tipo:'usuarios'| 'cursos'|'secciones'){
 
    switch(tipo){
     case 'usuarios':
@@ -36,6 +37,12 @@ export class ModalTablasComponent implements OnInit {
       this.modalTablasService.buscar(tipo,termino);
       break;
     case 'cursos':
+      if(termino.length===0){
+        return this.modalTablasService.cargar(tipo);
+       }
+       this.modalTablasService.buscar(tipo,termino);
+      break;
+    case 'secciones':
       if(termino.length===0){
         return this.modalTablasService.cargar(tipo);
        }
@@ -55,5 +62,8 @@ export class ModalTablasComponent implements OnInit {
   }
   elergirUsuario(objeto:Usuario){
     this.modalTablasService.seleccionUsuario.emit(objeto.uid);
+  }
+  elegirSeccion(objeto:Seccion){
+    this.modalTablasService.seleccionSeccion.emit(objeto._id);
   }
 }

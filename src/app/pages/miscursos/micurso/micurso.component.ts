@@ -4,6 +4,7 @@ import { Curso } from 'src/app/models/curso.model';
 import { Seccion } from 'src/app/models/seccion.model';
 import { CursosService } from 'src/app/services/cursos.service';
 import { SeccionService } from 'src/app/services/seccion.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-micurso',
@@ -12,7 +13,8 @@ import { SeccionService } from 'src/app/services/seccion.service';
   ]
 })
 export class MicursoComponent implements OnInit {
-  public cursoSeleccionado: Seccion;
+  public seccionSeleccionada: Seccion;
+  public cargando:boolean=true;
   constructor(
     private seccionService:SeccionService,
     private activatedRoute: ActivatedRoute,
@@ -37,7 +39,24 @@ export class MicursoComponent implements OnInit {
         if (!seccion) {
           //return this.router.navigateByUrl(`/dashboard/miscursos`);
         }
-        this.cursoSeleccionado=seccion;
+        this.seccionSeleccionada=seccion;
+        this.cargando=false;
       });
+  }
+
+  enviarAvance(){
+    Swal.fire({
+      title: '¿Enviar avance?',
+      text: `Está a punto de enviar su avance`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, enviar mi avance',
+    }).then((result) => {
+      if (result.value) {
+            Swal.fire('Enviado!', 'El avance ha sido enviado', 'success');
+          }
+    });
   }
 }

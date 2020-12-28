@@ -10,12 +10,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { InformacionComponent } from './informacion/informacion.component';
 import { InformesComponent } from './informes/informes.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
+import { MiavanceComponent } from './miscursos/micurso/miavance/miavance.component';
 import { MicursoComponent } from './miscursos/micurso/micurso.component';
 import { MiscursosComponent } from './miscursos/miscursos.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { SeccionComponent } from './secciones/seccion/seccion.component';
 import { SeccionesComponent } from './secciones/secciones.component';
+import { SilabusComponent } from './secciones/silabus/silabus.component';
+import { SilabosComponent } from './silabos/silabos.component';
 import { ActualizarComponent } from './usuarios/actualizar/actualizar.component';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
@@ -70,6 +73,18 @@ const childRoutes: Routes = [
     data:{title:'Gestión de Sección'}
   },
   {
+    path:'silabus',
+    canActivate:[AdminGuard],
+    component:SilabosComponent,
+    data:{title:'Gestión de Contenidos'}
+  },
+  {
+    path:'silabu/:id',
+    canActivate:[AdminGuard],
+    component:SilabusComponent,
+    data:{title:'Mi Contenido'}
+  },
+  {
     path:'miscursos',
     component:MiscursosComponent,
     data:{title:'Mis Cursos'}
@@ -78,6 +93,11 @@ const childRoutes: Routes = [
     path:'micurso/:id',
     component:MicursoComponent,
     data:{title:'Mi Curso'}
+  },
+  {
+    path:'micurso/miavance/:id',
+    component:MiavanceComponent,
+    data:{title:'Registrar Avance'}
   },
   {
     path:'informacion',

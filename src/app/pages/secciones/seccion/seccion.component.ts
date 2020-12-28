@@ -5,10 +5,12 @@ import { Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Curso } from 'src/app/models/curso.model';
 import { Seccion } from 'src/app/models/seccion.model';
+import { Silabus } from 'src/app/models/silabus.mode';
 import { Usuario } from 'src/app/models/usuario.model';
 import { CursosService } from 'src/app/services/cursos.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SeccionService } from 'src/app/services/seccion.service';
+import { SilaboService } from 'src/app/services/silabo.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
 
@@ -29,6 +31,7 @@ export class SeccionComponent implements OnInit {
   private cursoSubs:Subscription;
   private docenteSubs:Subscription;
   public docenteTemp:string;
+  public silabuId : string="nuevo";
 
   constructor(
     private fb: FormBuilder,
@@ -37,8 +40,8 @@ export class SeccionComponent implements OnInit {
     private cursoService:CursosService,
     private usuarioService:UsuarioService,
     private seccionService:SeccionService,
-    private modalService:ModalService
-
+    private modalService:ModalService,
+    private silaboService:SilaboService
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +55,7 @@ export class SeccionComponent implements OnInit {
     });
 
     this.activatedRoute.params.subscribe(({ id }) => {
+      this.cargarSilabu(id);
       this.cargarSeccion(id);
     });
 
@@ -82,6 +86,12 @@ export class SeccionComponent implements OnInit {
       });
     })
 
+  }
+
+  cargarSilabu(id:string){
+    this.silaboService.cargarSilaboBySeccion(id).subscribe((silabo:Silabus)=>{
+      this.silabuId=silabo._id;
+    })
   }
 
   cargarCursos() {

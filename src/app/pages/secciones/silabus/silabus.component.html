@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="col-md-12 mx-auto">
+    <form
+          class="form-horizontal p-t-20"
+          [formGroup]="silaboForm"
+          (submit)="guardarSilabo()"
+        >
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Contenido</h4>
+
+
+          <div class="form-group row">
+            <label for="usuario" class="col-sm-2 control-label"
+              >Seccion*</label
+            >
+            <div class="col-sm-7">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-info"></i></div>
+                <input
+                  formControlName="nombreseccion"
+                  type="text"
+                  class="form-control"
+                  placeholder="Seleccione seccion"
+                  disabled
+                />
+                <input type="hidden" formControlName="seccion"/>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="btn btn-info btn-block" (click)="abrirModal('secciones')">Secciones</div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="usuario" class="col-sm-2 control-label"
+              >N° Semanas*</label
+            >
+            <div class="col-sm-7">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-bar-chart-alt"></i></div>
+                <input
+                  formControlName="semanas"
+                  type="number"
+                  class="form-control"
+                  placeholder="n° semanas"
+                />
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <!---SEMANAS-->
+
+    <div class="card" *ngIf="semanas.length!=0">
+      <div class="card-body" *ngFor="let number of semanas">
+        <h4 class="card-title">Semana {{number}}</h4>
+
+
+          <div class="form-group row">
+            <label for="usuario" class="col-sm-3 control-label"
+              >Conceptual*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-info"></i></div>
+                <textarea
+                  formControlName="contenidoConceptual{{number}}"
+                  type="text"
+                  class="form-control"
+                  placeholder="Ingrese contenido conceptual semana {{number}}"
+                  rows=5
+                >
+              </textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="usuario" class="col-sm-3 control-label"
+              >Procedimental*</label
+            >
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="ti-info"></i></div>
+                <textarea
+                  formControlName="contenidoProcedimental{{number}}"
+                  type="text"
+                  class="form-control"
+                  placeholder="Ingrese contenido procedimental semana {{number}}"
+                  rows=5
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+      </div>
+    </div>
+
+    <div class="form-group row m-b-0">
+      <div class="offset-sm-3 mx-auto">
+        <button
+          [disabled]="silaboForm.invalid"
+          type="submit"
+          class="btn btn-info waves-effect waves-light"
+        >
+          <i class="fa fa-save"></i>
+          &nbsp; Guardar
+        </button>
+      </div>
+    </div>
+
+  </form>
+  </div>
+</div>

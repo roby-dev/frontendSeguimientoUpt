@@ -25,6 +25,9 @@ import { AvanceComponent } from './avance/avance.component';
 import { ActasComponent } from './actas/actas.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { InformesComponent } from './informes/informes.component';
+import { SilabusComponent } from './secciones/silabus/silabus.component';
+import { SilabosComponent } from './silabos/silabos.component';
+import { MiavanceComponent } from './miscursos/micurso/miavance/miavance.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import { InformesComponent } from './informes/informes.component';
     AvanceComponent,
     ActasComponent,
     NotificacionesComponent,
-    InformesComponent
+    InformesComponent,
+    SilabusComponent,
+    SilabosComponent,
+    MiavanceComponent
   ],
   imports: [
     CommonModule,
@@ -74,7 +80,10 @@ import { InformesComponent } from './informes/informes.component';
     AvanceComponent,
     ActasComponent,
     NotificacionesComponent,
-    InformesComponent
+    InformesComponent,
+    SilabusComponent,
+    SilabosComponent,
+    MiavanceComponent
   ],
 })
 export class PagesModule {}

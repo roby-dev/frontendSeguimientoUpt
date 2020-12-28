@@ -1,9 +1,18 @@
+<div class="row animated fadeIn fast" *ngIf="cargando">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Cargando</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Por favor espere</p>
+    </div>
+  </div>
+</div>
 
-<div class="row">
+<div class="row animated fadeIn fast" *ngIf="!cargando">
   <div class="col-sm-8 mx-auto">
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title" *ngIf="cursoSeleccionado">{{cursoSeleccionado.nombre}}</h3>
+        <h3 class="card-title" *ngIf="seccionSeleccionada">{{seccionSeleccionada.nombre}}</h3>
         <br>
         <div class="table-responsive">
           <table class="table table-bordered">
@@ -13,23 +22,18 @@
                 <th>Accion</th>
             </thead>
             <tbody>
-              <tr *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]">
-                <td>Semana {{number}}</td>
-                <td class="w500">
-                  <button class="btn btn-default">Ver Avance</button>
+              <tr *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
+                <td class="w150">Semana {{number}}</td>
+                <td class="w400">
+                  <a [routerLink]="['/dashboard', 'micurso','miavance', seccionSeleccionada._id]" class="btn btn-secondary">Registrar Avance</a>
                   &nbsp;
-                  <button class="btn btn-default">Registrar Avance</button>
-                  &nbsp;
-                  <button class="btn btn-info">Enviar Avance</button>
+                  <button (click)="enviarAvance()" class="btn btn-info">Enviar Avance</button>
                   </td>
 
               </tr>
             </tbody>
           </table>
         </div>
-        <button class="btn btn-secondary">Anterior</button>
-        &nbsp;
-        <button class="btn btn-secondary">Siguiente</button>
       </div>
     </div>
   </div>

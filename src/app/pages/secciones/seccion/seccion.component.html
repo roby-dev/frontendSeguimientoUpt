@@ -27,7 +27,14 @@
               </div>
             </div>
             <div class="col-sm-3">
-              <div class="btn btn-info btn-block" (click)="abrirModal('cursos')">Silabus</div>
+              <a
+                class="btn btn-info btn-block"
+                [routerLink]="['/dashboard', 'silabu', silabuId]"
+                data-toggle="tooltip"
+                data-original-title="Editar"
+              >
+                Contenido
+              </a>
             </div>
           </div>
 
