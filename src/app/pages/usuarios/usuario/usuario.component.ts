@@ -22,26 +22,24 @@ export class UsuarioComponent implements OnInit {
   public usuarioForm: FormGroup;
   public usuarioSeleccionado: Usuario;
   public formSubmitted = false;
-  public secciones:Seccion[]=[];
+  public secciones: Seccion[] = [];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private usuarioService:UsuarioService,
+    private usuarioService: UsuarioService,
   ) { }
 
-
   ngOnInit(): void {
-
     this.usuarioForm = this.fb.group({
       nombres: ['', [Validators.required, Validators.minLength(3)]],
       apellidos: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       password2: ['', Validators.required],
-      role:['',Validators.required]
-    },  {
+      role: ['', Validators.required]
+    }, {
       validators: this.passwordsIguales('password', 'password2'),
     });
   }
@@ -60,17 +58,17 @@ export class UsuarioComponent implements OnInit {
 
   guardarUsuario() {
     this.formSubmitted = true;
-    if(this.usuarioForm.invalid){
+    if (this.usuarioForm.invalid) {
       return;
     }
-    const { nombres,apellidos } = this.usuarioForm.value;
+    const { nombres, apellidos } = this.usuarioForm.value;
     this.usuarioService
-        .crearUsuario(this.usuarioForm.value)
-        .subscribe((resp: any) => {
-          Swal.fire('Creado', `${nombres} ${apellidos}  creado correctamente`, 'success');
-          this.usuarioForm.reset();
-          this.router.navigateByUrl(`/dashboard/usuarios`);
-        });
+      .crearUsuario(this.usuarioForm.value)
+      .subscribe((resp: any) => {
+        Swal.fire('Creado', `${nombres} ${apellidos}  creado correctamente`, 'success');
+        this.usuarioForm.reset();
+        this.router.navigateByUrl(`/dashboard/usuarios`);
+      });
   }
 
   campoNoValido(campo: string): boolean {

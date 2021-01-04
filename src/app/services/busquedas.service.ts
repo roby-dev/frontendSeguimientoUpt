@@ -32,7 +32,7 @@ export class BusquedasService {
     return resultados.map(
       (user) =>
         new Usuario(
-          user.nombres,
+          user.nombre,
           user.apellidos,
           user.email,
           '',

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso.model';
 import { Seccion } from 'src/app/models/seccion.model';
+import { AvanceService } from 'src/app/services/avance.service';
 import { CursosService } from 'src/app/services/cursos.service';
 import { SeccionService } from 'src/app/services/seccion.service';
+import { SilaboService } from 'src/app/services/silabo.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,15 +17,19 @@ import Swal from 'sweetalert2';
 export class MicursoComponent implements OnInit {
   public seccionSeleccionada: Seccion;
   public cargando:boolean=true;
+  public id:string="";
   constructor(
     private seccionService:SeccionService,
     private activatedRoute: ActivatedRoute,
+    private avanceService:AvanceService,
     private router: Router,
+    private silaboService:SilaboService
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(({ id }) => {
       this.cargarCurso(id);
+      localStorage.setItem("seccion",id);
     });
   }
 
@@ -42,6 +48,15 @@ export class MicursoComponent implements OnInit {
         this.seccionSeleccionada=seccion;
         this.cargando=false;
       });
+    this.silaboService
+    .cargarSilaboBySeccion(id)
+    .subscribe((silabo)=>{
+      if(!silabo){
+        return;
+      }else{
+        this.id=silabo._id;
+      }
+    })
   }
 
   enviarAvance(){

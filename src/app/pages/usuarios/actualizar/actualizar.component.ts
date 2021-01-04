@@ -19,10 +19,10 @@ export class ActualizarComponent implements OnInit {
 
   public usuarioForm: FormGroup;
   public usuarioSeleccionado: Usuario;
-  public secciones:Seccion[] = [];
-  public cargando:boolean=true;
-  public seccion:boolean=false;
-  private id:string;
+  public secciones: Seccion[] = [];
+  public cargando: boolean = true;
+  public seccion: boolean = false;
+  private id: string;
 
   @Output() public usuario = new EventEmitter<Usuario>();
 
@@ -31,12 +31,12 @@ export class ActualizarComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private usuarioService:UsuarioService,
-    private seccionService:SeccionService,
-    private modalService:ModalPasswordService
+    private usuarioService: UsuarioService,
+    private seccionService: SeccionService,
+    private modalService: ModalPasswordService
   ) { }
 
-  mandarUsuario(usuario:Usuario){
+  mandarUsuario(usuario: Usuario) {
     this.usuario.emit(usuario);
   }
 
@@ -45,19 +45,19 @@ export class ActualizarComponent implements OnInit {
       this.cargarUsuario(id);
       this.cargarSecciones(id);
 
-      this.id=id;
+      this.id = id;
     });
 
     this.usuarioForm = this.fb.group({
       nombres: ['', [Validators.required, Validators.minLength(3)]],
       apellidos: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      role:['',Validators.required]
+      role: ['', Validators.required]
     });
   }
 
   cargarUsuario(id: string) {
-    if (id=='') {
+    if (id == '') {
       return this.router.navigateByUrl(`/dashboard/usuarios`);
     }
 
@@ -80,26 +80,26 @@ export class ActualizarComponent implements OnInit {
           email,
           role,
         });
-        this.cargando=false;
+        this.cargando = false;
       });
 
   }
 
-  cargarSecciones(id:string){
-    this.cargando=true;
-    this.seccion=false;
+  cargarSecciones(id: string) {
+    this.cargando = true;
+    this.seccion = false;
     this.seccionService.cargarSeccionPorDocente(id)
-      .subscribe((secciones:Seccion[])=>{
-        this.secciones=secciones;
-        this.cargando=false;
-        if(this.secciones){
-          this.seccion=true;
+      .subscribe((secciones: Seccion[]) => {
+        this.secciones = secciones;
+        this.cargando = false;
+        if (this.secciones) {
+          this.seccion = true;
         }
       });
   }
 
   actualizarUsuario() {
-    const { nombres,apellidos } = this.usuarioForm.value;
+    const { nombres, apellidos } = this.usuarioForm.value;
     if (this.usuarioSeleccionado) {
       const data = {
         ...this.usuarioForm.value,
@@ -112,13 +112,13 @@ export class ActualizarComponent implements OnInit {
           'success'
         );
       },
-      (error) => {
+        (error) => {
           Swal.fire('Error!', error.error.msg, 'error');
-      });
+        });
     }
   }
 
-  borrarSeccion(seccion:Seccion){
+  borrarSeccion(seccion: Seccion) {
     Swal.fire({
       title: '¿Borrar Sección?',
       text: `Está a punto de borrar a ${seccion.nombre}`,

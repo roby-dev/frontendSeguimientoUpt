@@ -88,7 +88,12 @@ export class SeccionComponent implements OnInit {
 
   }
 
+
   cargarSilabu(id:string){
+    if(id=='nuevo'){
+      return;
+    }
+
     this.silaboService.cargarSilaboBySeccion(id).subscribe((silabo:Silabus)=>{
       this.silabuId=silabo._id;
     })
@@ -106,7 +111,6 @@ export class SeccionComponent implements OnInit {
     this.usuarioService.cargarTodosUsuaris()
     .subscribe(({usuarios})=>{
       this.docentes=usuarios;
-      console.log(this.docentes);
     });
   }
 
@@ -135,7 +139,6 @@ export class SeccionComponent implements OnInit {
         const {
           nombre,
         } = seccion;
-        console.log();
         this.seccionSeleccionada = seccion;
         this.seccionForm.setValue({
           nombre,

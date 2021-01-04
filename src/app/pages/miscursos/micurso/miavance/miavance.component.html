@@ -10,323 +10,249 @@
 
 <div class="card animated fadeIn fast" *ngIf="!cargando">
   <div class="card-body p-b-0 p-3">
-      <h4 class="card-title">{{seccionSeleccionada.nombre}}</h4>
-      <h6 class="card-subtitle">Mi avance</h6>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs customtab" role="tablist">
-      <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#clase1" role="tab" aria-expanded="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Clase 1</span></a> </li>
-      <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#clase2" role="tab" aria-expanded="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Clase 2</span></a> </li>
-      <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#clase3" role="tab" aria-expanded="true"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Clase 3</span></a> </li>
-  </ul>
-  <!-- Tab panes -->
-  <div class="tab-content">
+    <h4 class="card-title">{{seccionSeleccionada.nombre}}</h4>
+    <h6 class="card-subtitle">Mi avance semana </h6>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs customtab" role="tablist">
+      <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#clase1" role="tab"
+          aria-expanded="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span
+            class="hidden-xs-down">Clase 1</span></a> </li>
+      <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#clase2" role="tab" aria-expanded="false"><span
+            class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Clase 2</span></a> </li>
+      <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#clase3" role="tab" aria-expanded="true"><span
+            class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Clase 3</span></a> </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content" *ngIf="!cargando">
       <div class="tab-pane active" id="clase1" role="tabpanel" aria-expanded="false">
-          <div class="p-20">
-            <form
-              class="form-horizontal p-t-20"
-            >
+        <div class="p-20">
+          <h4 class="card-title">Contenido clase 1</h4>
+          <hr>
+          <form [formGroup]="avanceForm1" (submit)="guardarAvance(1)" class="form-horizontal p-t-20">
             <div class="form-group row">
-              <label for="fecha" class="col-sm-3 control-label"
-                >Fecha*</label
-              >
+              <label for="fecha1" class="col-sm-3 control-label">Fecha*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="fecha"
-                    placeholder="Ingrese fecha"
-                  />
+                  <input type="date" class="form-control" id="fecha1" placeholder="Ingrese fecha" formControlName="fecha"/>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="fecha" class="col-sm-3 control-label"
-                >Se Dictó*</label
-              >
+              <label for="dicto1" class="col-sm-3 control-label">Se Dictó*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="dicto" id="si" value="si">
-                  <label class="form-check-label" for="si">Si</label>
+                  <input class="form-check-input" type="radio" name="dicto" id="si1" value="si">
+                  <label class="form-check-label" for="si1">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="dicto" id="no" value="no">
-                  <label class="form-check-label" for="no">No</label>
+                  <input class="form-check-input" type="radio" name="dicto" id="no1" value="no">
+                  <label class="form-check-label" for="no1">No</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="asistentes" class="col-sm-3 control-label"
-                >Asistentes*</label
-              >
+              <label for="asistentes1" class="col-sm-3 control-label">Asistentes*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="asistentes"
-                    placeholder="N° de asistentes"
-                  />
+                  <input type="number" class="form-control" id="asistentes1" placeholder="N° de asistentes" />
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="usuario" class="col-sm-3 control-label"
-                >Conceptual*</label
-              >
+              <label for="conceptual1" class="col-sm-3 control-label">Conceptual*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-info"></i></div>
-                  <textarea
-                    type="text"
-                    class="form-control"
-                    placeholder="Ingrese contenido conceptual clase 1"
-                    rows=5
-                  ></textarea>
+                  <textarea id="conceptual1" type="text" class="form-control"
+                    placeholder="Ingrese contenido conceptual clase 1" rows=5></textarea>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="usuario" class="col-sm-3 control-label"
-                >Procedimental*</label
-              >
+              <label for="procedimental1" class="col-sm-3 control-label">Procedimental*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-info"></i></div>
-                  <textarea
-                    type="text"
-                    class="form-control"
-                    placeholder="Ingrese contenido procedimental clase 2"
-                    rows=5
-                  ></textarea>
+                  <textarea id="procedimental1" type="text" class="form-control"
+                    placeholder="Ingrese contenido procedimental clase 2" rows=5></textarea>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="porcentaje" class="col-sm-3 control-label"
-                >Porcentaje*</label
-              >
+              <label for="porcentaje1" class="col-sm-3 control-label">Porcentaje*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="porcentaje"
-                    placeholder="Porcentaje"
-                  />
+                  <input type="text" class="form-control" id="porcentaje1" placeholder="Porcentaje" />
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="fecha" class="col-sm-3 control-label"
-                >Manejo Plataforma*</label
-              >
+              <label for="manejo1" class="col-sm-3 control-label">Manejo Plataforma*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="manejo" id="mbueno" value="mbueno">
-                  <label class="form-check-label" for="mbueno">Muy bueno</label>
+                  <input class="form-check-input" type="radio" name="manejo" id="mbueno1" value="mbueno">
+                  <label class="form-check-label" for="mbueno1">Muy bueno</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="manejo" id="bueno" value="bueno">
-                  <label class="form-check-label" for="bueno">Bueno</label>
+                  <input class="form-check-input" type="radio" name="manejo" id="bueno1" value="bueno">
+                  <label class="form-check-label" for="bueno1">Bueno</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="manejo" id="regular" value="regular">
-                  <label class="form-check-label" for="regular">Regultar</label>
+                  <input class="form-check-input" type="radio" name="manejo" id="regular1" value="regular">
+                  <label class="form-check-label" for="regular1">Regultar</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="recursos" class="col-sm-3 control-label"
-                >Recursos didácticos empleados*</label
-              >
+              <label for="recursos1" class="col-sm-3 control-label">Recursos didácticos empleados*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="recursos"
-                    placeholder="Ingrese los recursos"
-                  />
+                  <input type="text" class="form-control" id="recursos1" placeholder="Ingrese los recursos" />
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="evalua" class="col-sm-3 control-label"
-                >Evalúa durante la sesión*</label
-              >
+              <label for="evalua1" class="col-sm-3 control-label">Evalúa durante la sesión*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="evalua" id="esi" value="si">
-                  <label class="form-check-label" for="esi">Si</label>
+                  <input class="form-check-input" type="radio" name="evalua" id="esi1" value="si">
+                  <label class="form-check-label" for="esi1">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="evalua" id="eno" value="no">
-                  <label class="form-check-label" for="eno">No</label>
+                  <input class="form-check-input" type="radio" name="evalua" id="eno1" value="no">
+                  <label class="form-check-label" for="eno1">No</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="aplica" class="col-sm-3 control-label"
-                >Aplica aprendizaje colaborativo*</label
-              >
+              <label for="aplica1" class="col-sm-3 control-label">Aplica aprendizaje colaborativo*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="aplica" id="asi" value="si">
-                  <label class="form-check-label" for="asi">Si</label>
+                  <input class="form-check-input" type="radio" name="aplica" id="asi1" value="si">
+                  <label class="form-check-label" for="asi1">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="aplica" id="ano" value="no">
-                  <label class="form-check-label" for="ano">No</label>
+                  <input class="form-check-input" type="radio" name="aplica" id="ano1" value="no">
+                  <label class="form-check-label" for="ano1">No</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="nivel" class="col-sm-3 control-label"
-                >Nivel de participación*</label
-              >
+              <label for="nivel1" class="col-sm-3 control-label">Nivel de participación*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="nivel" id="alto" value="alto">
-                  <label class="form-check-label" for="alto">Alto</label>
+                  <input class="form-check-input" type="radio" name="nivel" id="alto1" value="alto">
+                  <label class="form-check-label" for="alto1">Alto</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="nivel" id="medio" value="medio">
-                  <label class="form-check-label" for="medio">Medio</label>
+                  <input class="form-check-input" type="radio" name="nivel" id="medio1" value="medio">
+                  <label class="form-check-label" for="medio1">Medio</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="nivel" id="bajo" value="bajo">
-                  <label class="form-check-label" for="bajo">Bajo</label>
+                  <input class="form-check-input" type="radio" name="nivel" id="bajo1" value="bajo">
+                  <label class="form-check-label" for="bajo1">Bajo</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="asistencia" class="col-sm-3 control-label"
-                >Asistencia primeros 10 min*</label
-              >
+              <label for="asistencia1" class="col-sm-3 control-label">Asistencia primeros 10 min*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="asistencia" id="assi" value="si">
-                  <label class="form-check-label" for="assi">Si</label>
+                  <input class="form-check-input" type="radio" name="asistencia" id="assi1" value="si">
+                  <label class="form-check-label" for="assi1">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="asistencia" id="asno" value="no">
-                  <label class="form-check-label" for="asno">No</label>
+                  <input class="form-check-input" type="radio" name="asistencia" id="asno1" value="no">
+                  <label class="form-check-label" for="asno1">No</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="final" class="col-sm-3 control-label"
-                >Asistencia al final*</label
-              >
+              <label for="final1" class="col-sm-3 control-label">Asistencia al final*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="final" id="asssi" value="si">
-                  <label class="form-check-label" for="asssi">Si</label>
+                  <input class="form-check-input" type="radio" name="final" id="asssi1" value="si">
+                  <label class="form-check-label" for="asssi1">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="final" id="asssno" value="no">
-                  <label class="form-check-label" for="asssno">No</label>
+                  <input class="form-check-input" type="radio" name="final" id="asssno1" value="no">
+                  <label class="form-check-label" for="asssno1">No</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="google" class="col-sm-3 control-label"
-                >Utiliza Google Meet*</label
-              >
+              <label for="google1" class="col-sm-3 control-label">Utiliza Google Meet*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="google" id="gsi" value="si">
-                  <label class="form-check-label" for="gsi">Si</label>
+                  <input class="form-check-input" type="radio" name="google" id="gsi1" value="si">
+                  <label class="form-check-label" for="gsi1">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="google" id="gno" value="no">
-                  <label class="form-check-label" for="gno">No</label>
+                  <input class="form-check-input" type="radio" name="google" id="gno1" value="no">
+                  <label class="form-check-label" for="gno1">No</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="herramienta" class="col-sm-3 control-label"
-                >Utilizó otra herramienta*</label
-              >
+              <label for="herramienta1" class="col-sm-3 control-label">Utilizó otra herramienta*</label>
               <div class="col-sm-9">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="herramienta" id="hsi" value="si">
-                  <label class="form-check-label" for="hsi">Si</label>
+                  <input class="form-check-input" type="radio" name="herramienta" id="hsi1" value="si">
+                  <label class="form-check-label" for="hsi1">Si</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="herramienta" id="hno" value="no">
-                  <label class="form-check-label" for="hno">No</label>
+                  <input class="form-check-input" type="radio" name="herramienta" id="hno1" value="no">
+                  <label class="form-check-label" for="hno1">No</label>
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="otraherramienta" class="col-sm-3 control-label"
-                >Indique otra herramienta*</label
-              >
+              <label for="otraherramienta1" class="col-sm-3 control-label">Indique otra herramienta*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="otraherramienta"
-                    placeholder="Ingrese otra herramienta"
-                  />
+                  <input type="text" class="form-control" id="otraherramienta1"
+                    placeholder="Ingrese otra herramienta" />
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="duracion" class="col-sm-3 control-label"
-                >Duración del Video (hh:mm:ss)*</label
-              >
+              <label for="duracion1" class="col-sm-3 control-label">Duración del Video (hh:mm:ss)*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="duracion"
-                    placeholder="hh:mm:ss"
-                  />
+                  <input type="text" class="form-control" id="duracion1" placeholder="hh:mm:ss" />
                 </div>
               </div>
             </div>
 
             <div class="form-group row">
-              <label for="comentario" class="col-sm-3 control-label"
-                >Comentario*</label
-              >
+              <label for="comentario1" class="col-sm-3 control-label">Comentario*</label>
               <div class="col-sm-9">
                 <div class="input-group">
                   <div class="input-group-addon"><i class="ti-info"></i></div>
-                  <textarea
-                  id="comentario"
-                    type="text"
-                    class="form-control"
-                    placeholder="Ingrese comentario (opcional)"
-                    rows=3
-                  ></textarea>
+                  <textarea id="comentario1" type="text" class="form-control"
+                    placeholder="Ingrese comentario (opcional)" rows=3></textarea>
                 </div>
               </div>
             </div>
@@ -334,648 +260,491 @@
 
           </form>
 
-          </div>
+        </div>
       </div>
       <div class="tab-pane" id="clase2" role="tabpanel" aria-expanded="false">
         <div class="p-20">
-          <form
-            class="form-horizontal p-t-20"
-          >
-          <div class="form-group row">
-            <label for="fecha" class="col-sm-3 control-label"
-              >Fecha*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="fecha"
-                  placeholder="Ingrese fecha"
-                />
+          <h4 class="card-title">Contenido clase 2</h4>
+          <hr>
+          <form [formGroup]="avanceForm2" (submit)="guardarAvance(2)" class="form-horizontal p-t-20">
+            <div class="form-group row">
+              <label for="fecha2" class="col-sm-3 control-label">Fecha*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="date" class="form-control" id="fecha2" placeholder="Ingrese fecha" formControlName="fecha" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="fecha" class="col-sm-3 control-label"
-              >Se Dictó*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="dicto" id="si" value="si">
-                <label class="form-check-label" for="si">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="dicto" id="no" value="no">
-                <label class="form-check-label" for="no">No</label>
+            <div class="form-group row">
+              <label for="dicto2" class="col-sm-3 control-label">Se Dictó*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="dicto" id="si2" value="si">
+                  <label class="form-check-label" for="si2">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="dicto" id="no2" value="no">
+                  <label class="form-check-label" for="no2">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="asistentes" class="col-sm-3 control-label"
-              >Asistentes*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="asistentes"
-                  placeholder="N° de asistentes"
-                />
+            <div class="form-group row">
+              <label for="asistentes2" class="col-sm-3 control-label">Asistentes*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="number" class="form-control" id="asistentes2" placeholder="N° de asistentes" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="usuario" class="col-sm-3 control-label"
-              >Conceptual*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-info"></i></div>
-                <textarea
-                  type="text"
-                  class="form-control"
-                  placeholder="Ingrese contenido conceptual clase 1"
-                  rows=5
-                ></textarea>
+            <div class="form-group row">
+              <label for="conceptual2" class="col-sm-3 control-label">Conceptual*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-info"></i></div>
+                  <textarea id="conceptual2" type="text" class="form-control"
+                    placeholder="Ingrese contenido conceptual clase 1" rows=5></textarea>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="usuario" class="col-sm-3 control-label"
-              >Procedimental*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-info"></i></div>
-                <textarea
-                  type="text"
-                  class="form-control"
-                  placeholder="Ingrese contenido procedimental clase 2"
-                  rows=5
-                ></textarea>
+            <div class="form-group row">
+              <label for="procedimental2" class="col-sm-3 control-label">Procedimental*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-info"></i></div>
+                  <textarea id="procedimental2" type="text" class="form-control"
+                    placeholder="Ingrese contenido procedimental clase 2" rows=5></textarea>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="porcentaje" class="col-sm-3 control-label"
-              >Porcentaje*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="porcentaje"
-                  placeholder="Porcentaje"
-                />
+            <div class="form-group row">
+              <label for="porcentaje2" class="col-sm-3 control-label">Porcentaje*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="porcentaje2" placeholder="Porcentaje" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="fecha" class="col-sm-3 control-label"
-              >Manejo Plataforma*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="manejo" id="mbueno" value="mbueno">
-                <label class="form-check-label" for="mbueno">Muy bueno</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="manejo" id="bueno" value="bueno">
-                <label class="form-check-label" for="bueno">Bueno</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="manejo" id="regular" value="regular">
-                <label class="form-check-label" for="regular">Regultar</label>
+            <div class="form-group row">
+              <label for="manejo2" class="col-sm-3 control-label">Manejo Plataforma*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="manejo" id="mbueno2" value="mbueno">
+                  <label class="form-check-label" for="mbueno2">Muy bueno</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="manejo" id="bueno2" value="bueno">
+                  <label class="form-check-label" for="bueno2">Bueno</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="manejo" id="regular2" value="regular">
+                  <label class="form-check-label" for="regular2">Regultar</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="recursos" class="col-sm-3 control-label"
-              >Recursos didácticos empleados*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="recursos"
-                  placeholder="Ingrese los recursos"
-                />
+            <div class="form-group row">
+              <label for="recursos2" class="col-sm-3 control-label">Recursos didácticos empleados*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="recursos2" placeholder="Ingrese los recursos" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="evalua" class="col-sm-3 control-label"
-              >Evalúa durante la sesión*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="evalua" id="esi" value="si">
-                <label class="form-check-label" for="esi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="evalua" id="eno" value="no">
-                <label class="form-check-label" for="eno">No</label>
+            <div class="form-group row">
+              <label for="evalua2" class="col-sm-3 control-label">Evalúa durante la sesión*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="evalua" id="esi2" value="si">
+                  <label class="form-check-label" for="esi2">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="evalua" id="eno2" value="no">
+                  <label class="form-check-label" for="eno2">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="aplica" class="col-sm-3 control-label"
-              >Aplica aprendizaje colaborativo*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="aplica" id="asi" value="si">
-                <label class="form-check-label" for="asi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="aplica" id="ano" value="no">
-                <label class="form-check-label" for="ano">No</label>
+            <div class="form-group row">
+              <label for="aplica2" class="col-sm-3 control-label">Aplica aprendizaje colaborativo*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="aplica" id="asi2" value="si">
+                  <label class="form-check-label" for="asi2">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="aplica" id="ano2" value="no">
+                  <label class="form-check-label" for="ano2">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="nivel" class="col-sm-3 control-label"
-              >Nivel de participación*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nivel" id="alto" value="alto">
-                <label class="form-check-label" for="alto">Alto</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nivel" id="medio" value="medio">
-                <label class="form-check-label" for="medio">Medio</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nivel" id="bajo" value="bajo">
-                <label class="form-check-label" for="bajo">Bajo</label>
+            <div class="form-group row">
+              <label for="nivel2" class="col-sm-3 control-label">Nivel de participación*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="nivel" id="alto2" value="alto">
+                  <label class="form-check-label" for="alto2">Alto</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="nivel" id="medio2" value="medio">
+                  <label class="form-check-label" for="medio2">Medio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="nivel" id="bajo2" value="bajo">
+                  <label class="form-check-label" for="bajo2">Bajo</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="asistencia" class="col-sm-3 control-label"
-              >Asistencia primeros 10 min*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="asistencia" id="assi" value="si">
-                <label class="form-check-label" for="assi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="asistencia" id="asno" value="no">
-                <label class="form-check-label" for="asno">No</label>
+            <div class="form-group row">
+              <label for="asistencia2" class="col-sm-3 control-label">Asistencia primeros 10 min*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="asistencia" id="assi2" value="si">
+                  <label class="form-check-label" for="assi2">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="asistencia" id="asno2" value="no">
+                  <label class="form-check-label" for="asno2">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="final" class="col-sm-3 control-label"
-              >Asistencia al final*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="final" id="asssi" value="si">
-                <label class="form-check-label" for="asssi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="final" id="asssno" value="no">
-                <label class="form-check-label" for="asssno">No</label>
+            <div class="form-group row">
+              <label for="final2" class="col-sm-3 control-label">Asistencia al final*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="final" id="asssi2" value="si">
+                  <label class="form-check-label" for="asssi2">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="final" id="asssno2" value="no">
+                  <label class="form-check-label" for="asssno2">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="google" class="col-sm-3 control-label"
-              >Utiliza Google Meet*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="google" id="gsi" value="si">
-                <label class="form-check-label" for="gsi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="google" id="gno" value="no">
-                <label class="form-check-label" for="gno">No</label>
+            <div class="form-group row">
+              <label for="google2" class="col-sm-3 control-label">Utiliza Google Meet*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="google" id="gsi2" value="si">
+                  <label class="form-check-label" for="gsi2">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="google" id="gno2" value="no">
+                  <label class="form-check-label" for="gno2">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="herramienta" class="col-sm-3 control-label"
-              >Utilizó otra herramienta*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="herramienta" id="hsi" value="si">
-                <label class="form-check-label" for="hsi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="herramienta" id="hno" value="no">
-                <label class="form-check-label" for="hno">No</label>
+            <div class="form-group row">
+              <label for="herramienta2" class="col-sm-3 control-label">Utilizó otra herramienta*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="herramienta" id="hsi2" value="si">
+                  <label class="form-check-label" for="hsi2">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="herramienta" id="hno2" value="no">
+                  <label class="form-check-label" for="hno2">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="otraherramienta" class="col-sm-3 control-label"
-              >Indique otra herramienta*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="otraherramienta"
-                  placeholder="Ingrese otra herramienta"
-                />
+            <div class="form-group row">
+              <label for="otraherramienta2" class="col-sm-3 control-label">Indique otra herramienta*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="otraherramienta2"
+                    placeholder="Ingrese otra herramienta" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="duracion" class="col-sm-3 control-label"
-              >Duración del Video (hh:mm:ss)*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="duracion"
-                  placeholder="hh:mm:ss"
-                />
+            <div class="form-group row">
+              <label for="duracion2" class="col-sm-3 control-label">Duración del Video (hh:mm:ss)*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="duracion2" placeholder="hh:mm:ss" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="comentario" class="col-sm-3 control-label"
-              >Comentario*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-info"></i></div>
-                <textarea
-                id="comentario"
-                  type="text"
-                  class="form-control"
-                  placeholder="Ingrese comentario (opcional)"
-                  rows=3
-                ></textarea>
+            <div class="form-group row">
+              <label for="comentario2" class="col-sm-3 control-label">Comentario*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-info"></i></div>
+                  <textarea id="comentario2" type="text" class="form-control"
+                    placeholder="Ingrese comentario (opcional)" rows=3></textarea>
+                </div>
               </div>
             </div>
-          </div>
 
 
-        </form>
+          </form>
 
         </div>
       </div>
-      <div class="tab-pane" id="clase3" role="tabpanel" aria-expanded="true">
+      <div class="tab-pane" id="clase3" role="tabpanel" aria-expanded="false">
         <div class="p-20">
-          <form
-            class="form-horizontal p-t-20"
-          >
-          <div class="form-group row">
-            <label for="fecha" class="col-sm-3 control-label"
-              >Fecha*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="date"
-                  class="form-control"
-                  id="fecha"
-                  placeholder="Ingrese fecha"
-                />
+          <h4 class="card-title">Contenido clase 3</h4>
+          <hr>
+          <form [formGroup]="avanceForm3" (submit)="guardarAvance(3)" class="form-horizontal p-t-20">
+            <div class="form-group row">
+              <label for="fecha3" class="col-sm-3 control-label">Fecha*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="date" class="form-control" id="fecha3" placeholder="Ingrese fecha" formControlName="fecha"/>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="fecha" class="col-sm-3 control-label"
-              >Se Dictó*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="dicto" id="si" value="si">
-                <label class="form-check-label" for="si">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="dicto" id="no" value="no">
-                <label class="form-check-label" for="no">No</label>
+            <div class="form-group row">
+              <label for="dicto3" class="col-sm-3 control-label">Se Dictó*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="dicto" id="si3" value="si">
+                  <label class="form-check-label" for="si3">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="dicto" id="no3" value="no">
+                  <label class="form-check-label" for="no3">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="asistentes" class="col-sm-3 control-label"
-              >Asistentes*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="number"
-                  class="form-control"
-                  id="asistentes"
-                  placeholder="N° de asistentes"
-                />
+            <div class="form-group row">
+              <label for="asistentes3" class="col-sm-3 control-label">Asistentes*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="number" class="form-control" id="asistentes3" placeholder="N° de asistentes" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="usuario" class="col-sm-3 control-label"
-              >Conceptual*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-info"></i></div>
-                <textarea
-                  type="text"
-                  class="form-control"
-                  placeholder="Ingrese contenido conceptual clase 1"
-                  rows=5
-                ></textarea>
+            <div class="form-group row">
+              <label for="conceptual3" class="col-sm-3 control-label">Conceptual*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-info"></i></div>
+                  <textarea id="conceptual3" type="text" class="form-control"
+                    placeholder="Ingrese contenido conceptual clase 1" rows=5></textarea>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="usuario" class="col-sm-3 control-label"
-              >Procedimental*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-info"></i></div>
-                <textarea
-                  type="text"
-                  class="form-control"
-                  placeholder="Ingrese contenido procedimental clase 2"
-                  rows=5
-                ></textarea>
+            <div class="form-group row">
+              <label for="procedimental3" class="col-sm-3 control-label">Procedimental*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-info"></i></div>
+                  <textarea id="procedimental3" type="text" class="form-control"
+                    placeholder="Ingrese contenido procedimental clase 2" rows=5></textarea>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="porcentaje" class="col-sm-3 control-label"
-              >Porcentaje*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="porcentaje"
-                  placeholder="Porcentaje"
-                />
+            <div class="form-group row">
+              <label for="porcentaje3" class="col-sm-3 control-label">Porcentaje*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="porcentaje3" placeholder="Porcentaje" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="fecha" class="col-sm-3 control-label"
-              >Manejo Plataforma*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="manejo" id="mbueno" value="mbueno">
-                <label class="form-check-label" for="mbueno">Muy bueno</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="manejo" id="bueno" value="bueno">
-                <label class="form-check-label" for="bueno">Bueno</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="manejo" id="regular" value="regular">
-                <label class="form-check-label" for="regular">Regultar</label>
+            <div class="form-group row">
+              <label for="manejo3" class="col-sm-3 control-label">Manejo Plataforma*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="manejo" id="mbueno3" value="mbueno">
+                  <label class="form-check-label" for="mbueno3">Muy bueno</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="manejo" id="bueno3" value="bueno">
+                  <label class="form-check-label" for="bueno3">Bueno</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="manejo" id="regular3" value="regular">
+                  <label class="form-check-label" for="regular3">Regultar</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="recursos" class="col-sm-3 control-label"
-              >Recursos didácticos empleados*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="recursos"
-                  placeholder="Ingrese los recursos"
-                />
+            <div class="form-group row">
+              <label for="recursos3" class="col-sm-3 control-label">Recursos didácticos empleados*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="recursos3" placeholder="Ingrese los recursos" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="evalua" class="col-sm-3 control-label"
-              >Evalúa durante la sesión*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="evalua" id="esi" value="si">
-                <label class="form-check-label" for="esi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="evalua" id="eno" value="no">
-                <label class="form-check-label" for="eno">No</label>
+            <div class="form-group row">
+              <label for="evalua3" class="col-sm-3 control-label">Evalúa durante la sesión*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="evalua" id="esi3" value="si">
+                  <label class="form-check-label" for="esi3">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="evalua" id="eno3" value="no">
+                  <label class="form-check-label" for="eno3">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="aplica" class="col-sm-3 control-label"
-              >Aplica aprendizaje colaborativo*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="aplica" id="asi" value="si">
-                <label class="form-check-label" for="asi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="aplica" id="ano" value="no">
-                <label class="form-check-label" for="ano">No</label>
+            <div class="form-group row">
+              <label for="aplica3" class="col-sm-3 control-label">Aplica aprendizaje colaborativo*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="aplica" id="asi3" value="si">
+                  <label class="form-check-label" for="asi3">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="aplica" id="ano3" value="no">
+                  <label class="form-check-label" for="ano3">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="nivel" class="col-sm-3 control-label"
-              >Nivel de participación*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nivel" id="alto" value="alto">
-                <label class="form-check-label" for="alto">Alto</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nivel" id="medio" value="medio">
-                <label class="form-check-label" for="medio">Medio</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="nivel" id="bajo" value="bajo">
-                <label class="form-check-label" for="bajo">Bajo</label>
+            <div class="form-group row">
+              <label for="nivel3" class="col-sm-3 control-label">Nivel de participación*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="nivel" id="alto3" value="alto">
+                  <label class="form-check-label" for="alto3">Alto</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="nivel" id="medio3" value="medio">
+                  <label class="form-check-label" for="medio3">Medio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="nivel" id="bajo3" value="bajo">
+                  <label class="form-check-label" for="bajo3">Bajo</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="asistencia" class="col-sm-3 control-label"
-              >Asistencia primeros 10 min*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="asistencia" id="assi" value="si">
-                <label class="form-check-label" for="assi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="asistencia" id="asno" value="no">
-                <label class="form-check-label" for="asno">No</label>
+            <div class="form-group row">
+              <label for="asistencia3" class="col-sm-3 control-label">Asistencia primeros 10 min*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="asistencia" id="assi3" value="si">
+                  <label class="form-check-label" for="assi3">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="asistencia" id="asno3" value="no">
+                  <label class="form-check-label" for="asno3">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="final" class="col-sm-3 control-label"
-              >Asistencia al final*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="final" id="asssi" value="si">
-                <label class="form-check-label" for="asssi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="final" id="asssno" value="no">
-                <label class="form-check-label" for="asssno">No</label>
+            <div class="form-group row">
+              <label for="final3" class="col-sm-3 control-label">Asistencia al final*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="final" id="asssi3" value="si">
+                  <label class="form-check-label" for="asssi3">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="final" id="asssno3" value="no">
+                  <label class="form-check-label" for="asssno3">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="google" class="col-sm-3 control-label"
-              >Utiliza Google Meet*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="google" id="gsi" value="si">
-                <label class="form-check-label" for="gsi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="google" id="gno" value="no">
-                <label class="form-check-label" for="gno">No</label>
+            <div class="form-group row">
+              <label for="google3" class="col-sm-3 control-label">Utiliza Google Meet*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="google" id="gsi3" value="si">
+                  <label class="form-check-label" for="gsi3">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="google" id="gno3" value="no">
+                  <label class="form-check-label" for="gno3">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="herramienta" class="col-sm-3 control-label"
-              >Utilizó otra herramienta*</label
-            >
-            <div class="col-sm-9">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="herramienta" id="hsi" value="si">
-                <label class="form-check-label" for="hsi">Si</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="herramienta" id="hno" value="no">
-                <label class="form-check-label" for="hno">No</label>
+            <div class="form-group row">
+              <label for="herramienta3" class="col-sm-3 control-label">Utilizó otra herramienta*</label>
+              <div class="col-sm-9">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="herramienta" id="hsi3" value="si">
+                  <label class="form-check-label" for="hsi3">Si</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="herramienta" id="hno3" value="no">
+                  <label class="form-check-label" for="hno3">No</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="otraherramienta" class="col-sm-3 control-label"
-              >Indique otra herramienta*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="otraherramienta"
-                  placeholder="Ingrese otra herramienta"
-                />
+            <div class="form-group row">
+              <label for="otraherramienta3" class="col-sm-3 control-label">Indique otra herramienta*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="otraherramienta3"
+                    placeholder="Ingrese otra herramienta" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="duracion" class="col-sm-3 control-label"
-              >Duración del Video (hh:mm:ss)*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-notepad"></i></div>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="duracion"
-                  placeholder="hh:mm:ss"
-                />
+            <div class="form-group row">
+              <label for="duracion3" class="col-sm-3 control-label">Duración del Video (hh:mm:ss)*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-notepad"></i></div>
+                  <input type="text" class="form-control" id="duracion3" placeholder="hh:mm:ss" />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label for="comentario" class="col-sm-3 control-label"
-              >Comentario*</label
-            >
-            <div class="col-sm-9">
-              <div class="input-group">
-                <div class="input-group-addon"><i class="ti-info"></i></div>
-                <textarea
-                id="comentario"
-                  type="text"
-                  class="form-control"
-                  placeholder="Ingrese comentario (opcional)"
-                  rows=3
-                ></textarea>
+            <div class="form-group row">
+              <label for="comentario3" class="col-sm-3 control-label">Comentario*</label>
+              <div class="col-sm-9">
+                <div class="input-group">
+                  <div class="input-group-addon"><i class="ti-info"></i></div>
+                  <textarea id="comentario3" type="text" class="form-control"
+                    placeholder="Ingrese comentario (opcional)" rows=3></textarea>
+                </div>
               </div>
             </div>
-          </div>
 
 
-        </form>
+          </form>
 
         </div>
       </div>
-  </div>
-  <div class="form-group row m-b-0">
-    <div class="offset-sm-3 mx-auto">
-      <a class="btn btn-info" routerLink="/dashboard/micurso/{{seccionSeleccionada._id}}">
-
-        <i class="fa fa-save"></i>
-        &nbsp; Guardar
-    </a>
+    </div>
+    <div class="form-group row m-b-0">
+      <div class="offset-sm-3 mx-auto">
+        <a class="btn btn-info" routerLink="/dashboard/micurso/{{seccionSeleccionada._id}}">
+          <i class="fa fa-save"></i>
+          &nbsp; Guardar
+        </a>
+      </div>
     </div>
   </div>
-</div>

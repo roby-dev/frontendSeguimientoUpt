@@ -4,106 +4,65 @@
       <div class="card-body">
         <h4 class="card-title">Usuario</h4>
         <h6 class="card-subtitle">Crear usuario</h6>
-        <form
-          class="form-horizontal p-t-20"
-          [formGroup]="usuarioForm"
-          (submit)="guardarUsuario()"
-        >
+        <form class="form-horizontal p-t-20" [formGroup]="usuarioForm" (submit)="guardarUsuario()">
 
           <div class="form-group row">
-            <label for="nombres" class="col-sm-3 control-label"
-              >Nombres*</label
-            >
+            <label for="nombres" class="col-sm-3 control-label">Nombres*</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <div class="input-group-addon"><i class="ti-user"></i></div>
-                <input
-                  formControlName="nombres"
-                  type="text"
-                  class="form-control"
-                  id="nombres"
-                  placeholder="Nombres del usuario"
-                />
+                <input formControlName="nombres" type="text" class="form-control" id="nombres"
+                  placeholder="Nombres del usuario" />
               </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="apellidos" class="col-sm-3 control-label"
-              >Apellidos*</label
-            >
+            <label for="apellidos" class="col-sm-3 control-label">Apellidos*</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <div class="input-group-addon"><i class="ti-user"></i></div>
-                <input
-                  formControlName="apellidos"
-                  type="text"
-                  class="form-control"
-                  id="apellidos"
-                  placeholder="Apellidos del usuario"
-                />
+                <input formControlName="apellidos" type="text" class="form-control" id="apellidos"
+                  placeholder="Apellidos del usuario" />
               </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="email" class="col-sm-3 control-label"
-              >Email*</label
-            >
+            <label for="email" class="col-sm-3 control-label">Email*</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <div class="input-group-addon"><i class="ti-email"></i></div>
-                <input
-                  formControlName="email"
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="Email del usuario"
-                />
+                <input formControlName="email" type="email" class="form-control" id="email"
+                  placeholder="Email del usuario" />
               </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="password" class="col-sm-3 control-label"
-              >Password*</label
-            >
+            <label for="password" class="col-sm-3 control-label">Password*</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <div class="input-group-addon"><i class="ti-lock"></i></div>
-                <input
-                  formControlName="password"
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Contraseña"
-                />
+                <input formControlName="password" type="password" class="form-control" id="password"
+                  placeholder="Contraseña" />
               </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="password2" class="col-sm-3 control-label"
-              >Re-Password*</label
-            >
+            <label for="password2" class="col-sm-3 control-label">Re-Password*</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <div class="input-group-addon"><i class="ti-lock"></i></div>
-                <input
-                  formControlName="password2"
-                  type="password"
-                  class="form-control"
-                  id="password2"
-                  placeholder="Confirmar contraseña"
-                />
+                <input formControlName="password2" type="password" class="form-control" id="password2"
+                  placeholder="Confirmar contraseña" />
               </div>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="role" class="col-sm-3 control-label"
-              >Tipo*</label
-            >
+            <label for="role" class="col-sm-3 control-label">Tipo*</label>
             <div class="col-sm-9">
               <div class="input-group">
                 <div class="input-group-addon"><i class="ti-stamp"></i></div>
@@ -134,10 +93,7 @@
 
           <div class="form-group row m-b-0">
             <div class="offset-sm-3 mx-auto">
-              <button
-                type="submit"
-                class="btn btn-info waves-effect waves-light btn-lg"
-              >
+              <button type="submit" class="btn btn-info waves-effect waves-light btn-lg">
                 <i class="fa fa-save"></i>
                 &nbsp; Guardar
               </button>

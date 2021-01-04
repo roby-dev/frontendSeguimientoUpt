@@ -25,7 +25,7 @@
               <tr *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]">
                 <td class="w150">Semana {{number}}</td>
                 <td class="w400">
-                  <a [routerLink]="['/dashboard', 'micurso','miavance', seccionSeleccionada._id]" class="btn btn-secondary">Registrar Avance</a>
+                  <a [routerLink]="['/dashboard', 'micurso','miavance', id]" class="btn btn-secondary">Registrar Avance</a>
                   &nbsp;
                   <button (click)="enviarAvance()" class="btn btn-info">Enviar Avance</button>
                   </td>

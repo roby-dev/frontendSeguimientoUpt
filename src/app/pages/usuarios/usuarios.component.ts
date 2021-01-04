@@ -24,26 +24,13 @@ export class UsuariosComponent implements OnInit {
   public cargando: boolean = true;
 
   constructor(
-    private usuarioService : UsuarioService,
-    private busquedaService:BusquedasService
+    private usuarioService: UsuarioService,
+    private busquedaService: BusquedasService
   ) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
   }
-
-  // buscar(termino: string) {
-  //   if (termino.length === 0) {
-  //     return (this.usuarios = this.usuariosTemp);
-  //   }
-
-  //   this.busquedasService
-  //     .buscar('usuarios', termino)
-  //     .subscribe((resp: Usuario[]) => {
-  //       this.usuarios = resp;
-  //     });
-  // }
-
 
   cambiarPagina(valor: number) {
     this.desde += valor;
@@ -59,7 +46,6 @@ export class UsuariosComponent implements OnInit {
 
   cargarUsuarios() {
     this.cargando = true;
-
     this.usuarioService
       .cargarUsuarios(this.desde)
       .subscribe(({ total, usuarios }) => {
@@ -68,25 +54,26 @@ export class UsuariosComponent implements OnInit {
           this.usuarios = usuarios;
           this.usuariosTemp = usuarios;
           this.cargando = false;
+          console.log(usuarios);
         }
       });
   }
 
-  cambiarRole(usuario :Usuario){
+  cambiarRole(usuario: Usuario) {
     this.usuarioService.guardarUsuario(usuario).subscribe();
   }
 
-  buscar(termino:string){
-    if(termino.length==0){
-     return(this.usuarios=this.usuariosTemp);
-    }else{
-      this.busquedaService.buscar('usuarios',termino).subscribe((usuarios:Usuario[])=>{
-        this.usuarios=usuarios;
+  buscar(termino: string) {
+    if (termino.length == 0) {
+      return (this.usuarios = this.usuariosTemp);
+    } else {
+      this.busquedaService.buscar('usuarios', termino).subscribe((usuarios: Usuario[]) => {
+        this.usuarios = usuarios;
       });
     }
   }
 
-  borrarUsuario(usuario:Usuario){
+  borrarUsuario(usuario: Usuario) {
     if (usuario.uid === this.usuarioService.uid) {
       return Swal.fire('Error', 'No puede borrarse a sí mismo', 'error');
     }
@@ -104,7 +91,7 @@ export class UsuariosComponent implements OnInit {
         this.usuarioService.eliminarUsuario(usuario).subscribe((resp) => {
           Swal.fire('Borrado!', 'El usuario ha sido borrado', 'success');
           this.cargarUsuarios();
-        },(error)=>{
+        }, (error) => {
           Swal.fire('Error!', 'No puede borrarse a sí mismo', 'error');
         });
       }
